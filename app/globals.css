@@ -141,15 +141,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-color: var(--border);
-    mask-image: url("/patterns/section-divider.svg");
-    mask-position: center;
-    mask-repeat: repeat;
-    mask-size: 210px 24px;
+    background-image: url("/patterns/section-divider.svg");
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 450px 225px;
     pointer-events: none;
-    -webkit-mask-image: url("/patterns/section-divider.svg");
-    -webkit-mask-position: center;
-    -webkit-mask-repeat: repeat;
-    -webkit-mask-size: 210px 24px;
   }
 }

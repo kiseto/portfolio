@@ -22,7 +22,7 @@ export type Project = {
 
 function ProjectImage({ project }: { project: Project }) {
   return (
-    <div className="relative flex aspect-[16/10] min-h-56 items-center justify-center overflow-hidden rounded-md border border-border bg-card text-sm font-medium text-muted-foreground">
+    <div className="relative flex aspect-[16/10] min-h-40 items-center justify-center overflow-hidden rounded-md border border-border bg-card text-sm font-medium text-muted-foreground sm:min-h-56">
       {project.imageSrc ? (
         <Image
           src={project.imageSrc}
@@ -40,10 +40,12 @@ function ProjectImage({ project }: { project: Project }) {
 
 function ProjectMeta({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-[3.25rem_1rem_minmax(0,1fr)] gap-3 text-sm leading-6 sm:text-base">
+    <div className="grid grid-cols-[2.75rem_0.75rem_minmax(0,1fr)] gap-x-2 gap-y-1 text-sm leading-6 sm:grid-cols-[3.25rem_1rem_minmax(0,1fr)] sm:gap-3 sm:text-base">
       <span className="text-muted-foreground">{label}</span>
       <span className="text-muted-foreground">|</span>
-      <span className="text-muted-foreground">{value}</span>
+      <span className="min-w-0 break-words text-muted-foreground">
+        {value}
+      </span>
     </div>
   );
 }
@@ -56,10 +58,10 @@ function ProjectActions({
   isOpen: boolean;
 }) {
   const actionClass =
-    "h-10 min-w-32 gap-2 border-border bg-muted text-foreground hover:bg-muted/80 sm:h-11";
+    "h-10 w-full gap-2 border-border bg-muted text-foreground hover:bg-muted/80 sm:h-11 sm:w-auto sm:min-w-32";
 
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
       <Button type="button" variant="outline" disabled className={actionClass}>
         <FileText className="size-4" />
         case study
@@ -103,7 +105,7 @@ function ProjectCard({
         aria-label={isOpen ? `Collapse ${project.title}` : `Expand ${project.title}`}
         aria-expanded={isOpen}
         aria-controls={detailsId}
-        className="absolute right-5 top-5 z-10 rounded-md p-1 text-foreground transition-colors duration-200 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:right-7 sm:top-7"
+        className="absolute right-4 top-4 z-10 rounded-md p-1 text-foreground transition-colors duration-200 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:right-7 sm:top-7"
         onClick={onToggle}
       >
         <ChevronDown
@@ -123,17 +125,17 @@ function ProjectCard({
         <div className="overflow-hidden">
           <button
             type="button"
-            className="flex w-full items-center justify-between gap-4 p-5 pr-14 text-left transition-colors duration-200 hover:bg-muted/20 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:p-7 sm:pr-16"
+            className="flex w-full items-center justify-between gap-4 p-4 pr-12 text-left transition-colors duration-200 hover:bg-muted/20 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:p-7 sm:pr-16"
             aria-expanded={isOpen}
             aria-controls={detailsId}
             tabIndex={isOpen ? -1 : undefined}
             onClick={onToggle}
           >
             <span className="min-w-0 space-y-2">
-              <span className="block text-2xl font-extrabold leading-tight text-foreground">
+              <span className="block text-xl font-extrabold leading-tight text-foreground sm:text-2xl">
                 {project.title}
               </span>
-              <span className="block text-base leading-6 text-muted-foreground">
+              <span className="block text-sm leading-6 text-muted-foreground sm:text-base">
                 {project.summary}
               </span>
             </span>
@@ -152,7 +154,7 @@ function ProjectCard({
         <div className="overflow-hidden">
           <div
             className={cn(
-              "grid gap-7 p-5 pr-14 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:p-7 sm:pr-16 md:grid-cols-[minmax(250px,0.85fr)_minmax(0,1.15fr)] md:gap-8 lg:grid-cols-[minmax(300px,0.9fr)_minmax(0,1.1fr)] lg:gap-10",
+              "grid gap-6 p-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-7 sm:p-7 sm:pr-16 md:grid-cols-[minmax(250px,0.85fr)_minmax(0,1.15fr)] md:gap-8 lg:grid-cols-[minmax(300px,0.9fr)_minmax(0,1.1fr)] lg:gap-10",
               isOpen ? "translate-y-0 scale-100" : "-translate-y-2 scale-[0.99]"
             )}
           >
@@ -160,7 +162,7 @@ function ProjectCard({
 
             <div className="min-w-0 space-y-5 md:space-y-6">
               <div className="space-y-2">
-                <h3 className="max-w-[34rem] pr-8 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
+                <h3 className="max-w-[34rem] pr-10 text-xl font-extrabold leading-tight text-foreground sm:pr-8 sm:text-3xl">
                   {project.title}
                 </h3>
               </div>

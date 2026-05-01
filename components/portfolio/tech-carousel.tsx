@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { ChevronLeft, ChevronRight, Workflow } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { Workflow } from "lucide-react";
 import {
   siExpress,
   siFirebase,
@@ -16,13 +16,9 @@ import {
   type SimpleIcon,
 } from "simple-icons";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-
 type BrandTech = {
   name: string;
   icon: SimpleIcon;
-  neutral?: boolean;
 };
 
 type LucideTech = {
@@ -33,12 +29,12 @@ type LucideTech = {
 type Tech = BrandTech | LucideTech;
 
 const technologies: Tech[] = [
-  { name: "Next.js", icon: siNextdotjs, neutral: true },
+  { name: "Next.js", icon: siNextdotjs },
   { name: "React", icon: siReact },
   { name: "Vue.js", icon: siVuedotjs },
   { name: "Tailwind CSS", icon: siTailwindcss },
   { name: "Node.js", icon: siNodedotjs },
-  { name: "Express", icon: siExpress, neutral: true },
+  { name: "Express", icon: siExpress },
   { name: "PHP", icon: siPhp },
   { name: "MySQL", icon: siMysql },
   { name: "Firebase", icon: siFirebase },
@@ -46,23 +42,53 @@ const technologies: Tech[] = [
   { name: "DevOps Practices", lucide: true },
 ];
 
+const AUTO_SCROLL_SPEED = 0.045;
+const LOOP_GROUPS = [0, 1, 2] as const;
+
+function getLoopWidth(group: HTMLDivElement | null) {
+  return group?.getBoundingClientRect().width ?? 0;
+}
+
+function normalizeOffset(offset: number, loopWidth: number) {
+  if (!loopWidth) {
+    return offset;
+  }
+
+  const normalized = offset % loopWidth;
+
+  if (normalized < 0) {
+    return normalized + loopWidth;
+  }
+
+  return normalized;
+}
+
+function setTrackOffset(track: HTMLDivElement, offset: number) {
+  track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+}
+
 function isBrandTech(tech: Tech): tech is BrandTech {
   return "icon" in tech;
 }
 
 function TechLogo({ tech }: { tech: Tech }) {
-  if (!isBrandTech(tech)) {
-    return <Workflow aria-hidden="true" className="size-16 text-foreground sm:size-20" />;
-  }
+  const iconClass =
+    "size-12 text-muted-foreground drop-shadow-[0_8px_18px_rgb(255_255_255_/_0.16)] sm:size-16";
 
-  const color = tech.neutral ? undefined : `#${tech.icon.hex}`;
+  if (!isBrandTech(tech)) {
+    return (
+      <Workflow
+        aria-hidden="true"
+        className={iconClass}
+      />
+    );
+  }
 
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className={cn("size-16 sm:size-20", tech.neutral && "text-foreground")}
-      style={color ? { color } : undefined}
+      className={iconClass}
     >
       <path fill="currentColor" d={tech.icon.path} />
     </svg>
@@ -70,59 +96,87 @@ function TechLogo({ tech }: { tech: Tech }) {
 }
 
 export function TechCarousel() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const groupRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
 
-  function scrollCarousel(direction: -1 | 1) {
-    const scroller = scrollerRef.current;
+  useEffect(() => {
+    const track = trackRef.current;
 
-    if (!scroller) {
+    if (!track) {
       return;
     }
 
-    scroller.scrollBy({
-      left: direction * Math.min(scroller.clientWidth * 0.8, 520),
-      behavior: "smooth",
-    });
-  }
+    const measureAndNormalize = () => {
+      const loopWidth = getLoopWidth(groupRef.current);
+
+      if (loopWidth) {
+        offsetRef.current = normalizeOffset(offsetRef.current, loopWidth);
+        setTrackOffset(track, offsetRef.current);
+      }
+    };
+
+    measureAndNormalize();
+
+    let animationFrame = 0;
+    let lastFrameTime = performance.now();
+    const resizeObserver = new ResizeObserver(measureAndNormalize);
+
+    if (groupRef.current) {
+      resizeObserver.observe(groupRef.current);
+    }
+
+    const tick = (time: number) => {
+      const elapsed = time - lastFrameTime;
+      lastFrameTime = time;
+      const loopWidth = getLoopWidth(groupRef.current);
+
+      if (loopWidth) {
+        offsetRef.current = normalizeOffset(
+          offsetRef.current + elapsed * AUTO_SCROLL_SPEED,
+          loopWidth,
+        );
+        setTrackOffset(track, offsetRef.current);
+      }
+
+      animationFrame = requestAnimationFrame(tick);
+    };
+
+    animationFrame = requestAnimationFrame(tick);
+    window.addEventListener("resize", measureAndNormalize);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", measureAndNormalize);
+    };
+  }, []);
 
   return (
     <div className="border-y border-border">
-      <div className="flex items-center justify-end gap-2 border-b border-border px-5 py-3 sm:px-8">
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon-sm"
-          aria-label="Previous technologies"
-          onClick={() => scrollCarousel(-1)}
-        >
-          <ChevronLeft className="size-4" />
-        </Button>
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon-sm"
-          aria-label="Next technologies"
-          onClick={() => scrollCarousel(1)}
-        >
-          <ChevronRight className="size-4" />
-        </Button>
-      </div>
-
-      <div
-        ref={scrollerRef}
-        className="flex snap-x snap-mandatory gap-8 overflow-x-auto px-5 py-12 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-12 sm:px-8 sm:py-14 [&::-webkit-scrollbar]:hidden"
-      >
-        {technologies.map((tech) => (
-          <article
-            key={tech.name}
-            className="flex min-w-32 snap-start flex-col items-center justify-center gap-4 text-center sm:min-w-40"
-          >
-            <TechLogo tech={tech} />
-            <h3 className="text-sm font-medium leading-5 text-foreground">
-              {tech.name}
-            </h3>
-          </article>
-        ))}
+      <div className="overflow-hidden px-5 py-12 sm:px-8 sm:py-14">
+        <div ref={trackRef} className="flex w-max will-change-transform">
+          {LOOP_GROUPS.map((group) => (
+            <div
+              key={group}
+              ref={group === 0 ? groupRef : undefined}
+              aria-hidden={group !== 1}
+              className="flex shrink-0 gap-8 pr-8 sm:gap-12 sm:pr-12"
+            >
+              {technologies.map((tech) => (
+                <article
+                  key={`${group}-${tech.name}`}
+                  className="flex min-w-28 flex-col items-center justify-center gap-4 text-center sm:min-w-36"
+                >
+                  <TechLogo tech={tech} />
+                  <h3 className="text-sm font-medium leading-5 text-foreground">
+                    {tech.name}
+                  </h3>
+                </article>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

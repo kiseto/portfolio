@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { CodeTerminal } from "@/components/portfolio/code-terminal";
 import { ProjectsSection } from "@/components/portfolio/projects-section";
 import { SectionDivider } from "@/components/portfolio/section-divider";
@@ -15,9 +17,13 @@ export default function Home() {
           id="home"
           className="flex min-h-[calc(100svh-5.5rem)] scroll-mt-24 flex-col items-center justify-center px-5 py-20 text-center sm:px-8 lg:px-12"
         >
-          <div
-            aria-hidden="true"
-            className="size-36 rounded-full bg-primary sm:size-44 lg:size-54"
+          <Image
+            src="/images/memoji.png"
+            alt="Memoji of Drake Sekito behind a laptop"
+            width={800}
+            height={800}
+            priority
+            className="h-auto w-36 object-contain sm:w-44 lg:w-54"
           />
 
           <h1 className="mt-4 text-4xl font-extrabold leading-none tracking-normal text-foreground sm:text-5xl">
