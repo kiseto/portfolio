@@ -131,10 +131,25 @@
 
 @layer components {
   .section-divider {
+    position: relative;
+    overflow: hidden;
     background-color: var(--background);
-    background-image: url("/patterns/section-divider.svg");
-    background-position: center;
-    background-size: 138.282px 80px;
     background-clip: padding-box;
+  }
+
+  .section-divider::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--border);
+    mask-image: url("/patterns/section-divider.svg");
+    mask-position: center;
+    mask-repeat: repeat;
+    mask-size: 210px 24px;
+    pointer-events: none;
+    -webkit-mask-image: url("/patterns/section-divider.svg");
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: repeat;
+    -webkit-mask-size: 210px 24px;
   }
 }
