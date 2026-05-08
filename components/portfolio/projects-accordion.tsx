@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ChevronDown, ExternalLink, FileText } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import { siGithub } from "simple-icons";
 
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,8 @@ export type Project = {
   role: string;
   description: string;
   githubUrl: string;
+  liveUrl?: string;
+  liveLabel?: string;
   imageSrc?: string;
 };
 
@@ -29,7 +31,7 @@ function ProjectImage({ project }: { project: Project }) {
           alt={`${project.title} preview`}
           fill
           sizes="(min-width: 1024px) 380px, (min-width: 640px) 80vw, 90vw"
-          className="object-cover"
+          className="object-cover object-top"
         />
       ) : (
         <span>no image</span>
@@ -61,11 +63,10 @@ function ProjectActions({
     "h-10 w-full gap-2 border-border bg-muted text-foreground hover:bg-muted/80 sm:h-11 sm:w-auto sm:min-w-32";
 
   return (
-    <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
-      <Button type="button" variant="outline" disabled className={actionClass}>
-        <FileText className="size-4" />
-        case study
-      </Button>
+    <div
+      className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap"
+      data-project-actions
+    >
       <Button asChild variant="outline" className={actionClass}>
         <a
           href={project.githubUrl}
@@ -79,10 +80,24 @@ function ProjectActions({
           github
         </a>
       </Button>
-      <Button type="button" variant="outline" disabled className={actionClass}>
-        <ExternalLink className="size-4" />
-        live
-      </Button>
+      {project.liveUrl ? (
+        <Button asChild variant="outline" className={actionClass}>
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            tabIndex={isOpen ? undefined : -1}
+          >
+            <ExternalLink className="size-4" />
+            {project.liveLabel ?? "live"}
+          </a>
+        </Button>
+      ) : (
+        <Button type="button" variant="outline" disabled className={actionClass}>
+          <ExternalLink className="size-4" />
+          {project.liveLabel ?? "live"}
+        </Button>
+      )}
     </div>
   );
 }
@@ -106,6 +121,7 @@ function ProjectCard({
         aria-expanded={isOpen}
         aria-controls={detailsId}
         className="absolute right-4 top-4 z-10 rounded-md p-1 text-foreground transition-colors duration-200 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:right-7 sm:top-7"
+        data-project-toggle
         onClick={onToggle}
       >
         <ChevronDown
@@ -129,6 +145,7 @@ function ProjectCard({
             aria-expanded={isOpen}
             aria-controls={detailsId}
             tabIndex={isOpen ? -1 : undefined}
+            data-project-toggle
             onClick={onToggle}
           >
             <span className="min-w-0 space-y-2">
@@ -191,6 +208,37 @@ export function ProjectsAccordion({ projects }: { projects: Project[] }) {
     () => new Set(projects[0] ? [projects[0].slug] : [])
   );
 
+  useEffect(() => {
+    function closeOpenProjects(event: PointerEvent) {
+      const target = event.target;
+
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      if (
+        target.closest("[data-project-actions]") ||
+        target.closest("[data-project-toggle]")
+      ) {
+        return;
+      }
+
+      setOpenProjects((current) => {
+        if (current.size === 0) {
+          return current;
+        }
+
+        return new Set();
+      });
+    }
+
+    document.addEventListener("pointerdown", closeOpenProjects);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOpenProjects);
+    };
+  }, []);
+
   return (
     <div className="mt-9 space-y-3">
       {projects.map((project) => (
@@ -205,7 +253,7 @@ export function ProjectsAccordion({ projects }: { projects: Project[] }) {
               if (next.has(project.slug)) {
                 next.delete(project.slug);
               } else {
-                next.add(project.slug);
+                return new Set([project.slug]);
               }
 
               return next;

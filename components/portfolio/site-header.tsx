@@ -88,7 +88,7 @@ export function SiteHeader() {
 
             <Button asChild variant="ghost" size="icon-sm">
               <a
-                href="https://github.com/drkskt"
+                href="https://github.com/kiseto"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Open GitHub profile"

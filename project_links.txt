@@ -1,8 +1,0 @@
-https://github.com/kiseto/student_task_manager_flutter
-- A Flutter app for students to manage tasks with authentication, CRUD operations, and notifications using Firebase. (dart + flutter)
-
-https://github.com/kiseto/balai-almeda-capstone
-- Balai Almeda IMIS A comprehensive web-based solution bridging a public booking portal with an internal hotel management system. Built as a monorepo using Tailwind, MySQL, Express, Vue 3, and Node.js. 
-
-https://github.com/kiseto/enrollmentsystem
--  enrollment system where it handles queueing @ cashier, student schedule, treasury, etc (you may word thsi better). stack: php, js, html, bootstrap
