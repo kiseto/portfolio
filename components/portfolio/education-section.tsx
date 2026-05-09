@@ -2,14 +2,18 @@ import { SectionHeading } from "@/components/portfolio/section-heading";
 
 const educationItems = [
   {
+    meta: "2027 / expected",
     school: "National College of Science and Technology - Cavite",
     program: "BS in Information Technology",
-    date: "Expected Graduation: 2027",
+    description:
+      "Built a deeper foundation in databases, version control, frameworks, authentication, security, and programming fundamentals.",
   },
   {
+    meta: "2022 / graduated",
     school: "Polytechnic University of the Philippines - Sta. Mesa",
     program: "Senior High School, TVL/ICT Strand",
-    date: "Graduated: 2022",
+    description:
+      "Started with HTML, CSS, and JavaScript, which sparked my interest in web design and development.",
   },
 ];
 
@@ -28,34 +32,32 @@ export function EducationSection() {
     >
       <SectionHeading
         title="#education"
-        subtitle="Academic background focused on practical software systems."
+        subtitle="Academic background shaped around practical software systems."
       />
 
-      <div className="mt-6 grid gap-4">
+      <div className="mt-9 border-y border-border">
         {educationItems.map((item) => (
           <article
             key={item.school}
-            className="rounded-md border border-border bg-card/30 p-4 sm:p-5"
+            className="border-b border-border py-5 last:border-b-0 sm:py-6"
           >
-            <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start">
-              <div className="min-w-0">
-                <h3 className="text-xl font-extrabold leading-tight text-foreground sm:text-2xl">
-                  {item.school}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground sm:text-base">
-                  {item.program}
-                </p>
-              </div>
-
-              <p className="font-mono text-xs leading-5 text-muted-foreground sm:pt-1 sm:text-right">
-                {item.date}
-              </p>
-            </div>
+            <p className="font-mono text-xs leading-5 text-muted-foreground">
+              {item.meta}
+            </p>
+            <h3 className="mt-2 text-xl font-extrabold leading-tight text-foreground sm:text-2xl">
+              {item.school}
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground sm:text-base">
+              {item.program}
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
+              {item.description}
+            </p>
           </article>
         ))}
       </div>
 
-      <div className="mt-4 rounded-md border border-border bg-background p-4 sm:p-5">
+      <div className="mt-6">
         <h3 className="font-mono text-xs font-medium uppercase leading-none text-muted-foreground">
           Relevant Focus
         </h3>
@@ -63,7 +65,7 @@ export function EducationSection() {
           {focusAreas.map((area) => (
             <span
               key={area}
-              className="rounded-md border border-border bg-muted px-3 py-2 text-xs font-medium leading-none text-foreground sm:text-sm"
+              className="rounded-md bg-primary px-3 py-2 text-xs font-medium leading-none text-primary-foreground sm:text-sm"
             >
               {area}
             </span>
