@@ -11,6 +11,8 @@ const navItems = [
   { href: "#about", label: "about" },
   { href: "#tech-stack", label: "tech stack" },
   { href: "#projects", label: "projects" },
+  { href: "#education", label: "education" },
+  { href: "#contact", label: "contact" },
 ];
 
 const searchableSections = [
@@ -18,6 +20,37 @@ const searchableSections = [
   { id: "about", terms: ["about", "profile", "bio"] },
   { id: "tech-stack", terms: ["tech", "tech stack", "stack", "skills"] },
   { id: "projects", terms: ["projects", "project", "work", "portfolio"] },
+  {
+    id: "education",
+    terms: [
+      "education",
+      "school",
+      "college",
+      "ncst",
+      "pup",
+      "information technology",
+      "senior high school",
+      "ict",
+      "web systems",
+      "database",
+      "capstone",
+    ],
+  },
+  {
+    id: "contact",
+    terms: [
+      "contact",
+      "email",
+      "mail",
+      "github",
+      "linkedin",
+      "location",
+      "timezone",
+      "philippines",
+      "freelance",
+      "opportunities",
+    ],
+  },
 ];
 
 export function SiteHeader() {

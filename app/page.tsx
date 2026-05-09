@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 import { CodeTerminal } from "@/components/portfolio/code-terminal";
+import { ContactSection } from "@/components/portfolio/contact-section";
+import { EducationSection } from "@/components/portfolio/education-section";
 import { ProjectsSection } from "@/components/portfolio/projects-section";
 import { SectionDivider } from "@/components/portfolio/section-divider";
 import { SectionHeading } from "@/components/portfolio/section-heading";
@@ -164,6 +166,14 @@ export default function Home() {
         <SectionDivider />
 
         <ProjectsSection />
+
+        <SectionDivider />
+
+        <EducationSection />
+
+        <SectionDivider />
+
+        <ContactSection />
       </main>
     </div>
   );
