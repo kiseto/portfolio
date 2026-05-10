@@ -72,8 +72,7 @@ function isBrandTech(tech: Tech): tech is BrandTech {
 }
 
 function TechLogo({ tech }: { tech: Tech }) {
-  const iconClass =
-    "size-12 text-muted-foreground drop-shadow-[0_8px_18px_rgb(255_255_255_/_0.16)] sm:size-16";
+  const iconClass = "size-12 text-muted-foreground sm:size-16";
 
   if (!isBrandTech(tech)) {
     return (
@@ -153,7 +152,7 @@ export function TechCarousel() {
   }, []);
 
   return (
-    <div className="border-y border-border">
+    <div className="relative overflow-hidden border-y border-border">
       <div className="overflow-hidden px-5 py-12 sm:px-8 sm:py-14">
         <div ref={trackRef} className="flex w-max will-change-transform">
           {LOOP_GROUPS.map((group) => (
@@ -178,6 +177,14 @@ export function TechCarousel() {
           ))}
         </div>
       </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-y-px left-0 z-10 w-16 bg-[linear-gradient(to_right,var(--background),transparent)] sm:w-28"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-y-px right-0 z-10 w-16 bg-[linear-gradient(to_left,var(--background),transparent)] sm:w-28"
+      />
     </div>
   );
 }
