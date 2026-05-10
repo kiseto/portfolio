@@ -98,6 +98,8 @@ export function TechCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const groupRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
+  const borderGradientClass =
+    "pointer-events-none absolute inset-x-0 z-10 h-px bg-[linear-gradient(to_right,transparent,var(--border)_4rem,var(--border)_calc(100%_-_4rem),transparent)] sm:bg-[linear-gradient(to_right,transparent,var(--border)_7rem,var(--border)_calc(100%_-_7rem),transparent)]";
 
   useEffect(() => {
     const track = trackRef.current;
@@ -152,7 +154,9 @@ export function TechCarousel() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden border-y border-border">
+    <div className="relative overflow-hidden">
+      <div aria-hidden="true" className={`${borderGradientClass} top-0`} />
+      <div aria-hidden="true" className={`${borderGradientClass} bottom-0`} />
       <div className="overflow-hidden px-5 py-12 sm:px-8 sm:py-14">
         <div ref={trackRef} className="flex w-max will-change-transform">
           {LOOP_GROUPS.map((group) => (

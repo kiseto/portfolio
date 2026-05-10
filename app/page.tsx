@@ -64,11 +64,16 @@ export default function Home() {
           />
 
           <p className="mt-6 max-w-4xl text-base leading-6 text-foreground">
-            I build reservation, enrollment, ERP-style, and task management
-            systems using Next.js, React, Vue.js, Tailwind CSS, Node.js, and
-            Express, with experience in MySQL and Firebase. I am continuously
-            learning DevOps practices to build more efficient and maintainable
-            applications.
+            I&apos;m an IT student developer who builds practical web systems
+            across both frontend and backend. I enjoy designing clean
+            interfaces, structuring user flows, and turning real workflows into
+            maintainable applications.
+          </p>
+
+          <p className="mt-4 max-w-4xl text-base leading-6 text-foreground">
+            My experience includes React, Next.js, Vue.js, Tailwind CSS,
+            Node.js, Express, MySQL, and Firebase, with a strong interest in
+            UI/UX design and system design.
           </p>
 
         </section>
