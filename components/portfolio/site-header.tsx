@@ -1,5 +1,6 @@
 "use client";
 
+import { ExternalLink } from "lucide-react";
 import { siGithub } from "simple-icons";
 
 import { SectionSearch } from "@/components/portfolio/section-search";
@@ -31,6 +32,17 @@ export function SiteHeader() {
             <SectionSearch />
 
             <ThemeToggle />
+
+            <Button asChild variant="ghost" size="icon-sm">
+              <a
+                href="https://www.linkedin.com/in/drake-sekito-804837408/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open LinkedIn profile"
+              >
+                <ExternalLink aria-hidden="true" className="size-5" />
+              </a>
+            </Button>
 
             <Button asChild variant="ghost" size="icon-sm">
               <a
