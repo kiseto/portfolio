@@ -128,23 +128,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-@layer components {
-  .section-divider {
-    position: relative;
-    overflow: hidden;
-    background-color: var(--background);
-    background-clip: padding-box;
-  }
-
-  .section-divider::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("/patterns/section-divider.svg");
-    background-position: center;
-    background-repeat: repeat;
-    background-size: 450px 225px;
-    pointer-events: none;
-  }
-}

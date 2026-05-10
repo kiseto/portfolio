@@ -71,40 +71,6 @@ export default function Home() {
             applications.
           </p>
 
-          <CodeTerminal title="about.json" className="mt-6 max-w-3xl">
-            <span>{"{"}</span>
-            {"\n  "}
-            <span className="text-muted-foreground">&quot;focus&quot;</span>
-            <span>: </span>
-            <span className="text-[#7dd36f]">
-              &quot;workflow-based web systems&quot;
-            </span>
-            <span>,</span>
-            {"\n  "}
-            <span className="text-muted-foreground">&quot;stack&quot;</span>
-            <span>: [</span>
-            <span className="text-[#7dd36f]">&quot;next.js&quot;</span>
-            <span>, </span>
-            <span className="text-[#7dd36f]">&quot;vue.js&quot;</span>
-            <span>, </span>
-            <span className="text-[#7dd36f]">&quot;node.js&quot;</span>
-            <span>, </span>
-            <span className="text-[#7dd36f]">&quot;express&quot;</span>
-            <span>],</span>
-            {"\n  "}
-            <span className="text-muted-foreground">&quot;database&quot;</span>
-            <span>: [</span>
-            <span className="text-[#7dd36f]">&quot;mysql&quot;</span>
-            <span>, </span>
-            <span className="text-[#7dd36f]">&quot;firebase&quot;</span>
-            <span>],</span>
-            {"\n  "}
-            <span className="text-muted-foreground">&quot;learning&quot;</span>
-            <span>: </span>
-            <span className="text-[#7dd36f]">&quot;devops&quot;</span>
-            {"\n"}
-            <span>{"}"}</span>
-          </CodeTerminal>
         </section>
 
         <SectionDivider />

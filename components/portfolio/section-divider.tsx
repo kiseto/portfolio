@@ -2,7 +2,9 @@ export function SectionDivider() {
   return (
     <div
       aria-hidden="true"
-      className="section-divider h-10 border-y border-border sm:h-12"
-    />
+      className="flex h-6 items-center sm:h-8"
+    >
+      <div className="w-full border-t border-border" />
+    </div>
   );
 }
