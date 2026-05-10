@@ -4,6 +4,7 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 
 import { SmoothScroll } from "@/components/portfolio/smooth-scroll";
+import { ThemeInitScript } from "@/components/portfolio/theme-init-script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +29,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <ThemeInitScript />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
