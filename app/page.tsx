@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Calendar, Code2, Layers } from "lucide-react";
 
 import { CodeTerminal } from "@/components/portfolio/code-terminal";
 import { ContactSection } from "@/components/portfolio/contact-section";
@@ -8,6 +9,24 @@ import { SectionDivider } from "@/components/portfolio/section-divider";
 import { SectionHeading } from "@/components/portfolio/section-heading";
 import { SiteHeader } from "@/components/portfolio/site-header";
 import { TechCarousel } from "@/components/portfolio/tech-carousel";
+
+const aboutHighlights = [
+  {
+    label: "3+",
+    description: "years learning web development",
+    icon: Calendar,
+  },
+  {
+    label: "4",
+    description: "academic and personal projects shipped",
+    icon: Layers,
+  },
+  {
+    label: "2",
+    description: "sides of the stack, frontend and backend",
+    icon: Code2,
+  },
+];
 
 export default function Home() {
   return (
@@ -77,6 +96,26 @@ export default function Home() {
                 Node.js, Express, MySQL, and Firebase, with a strong interest in
                 UI/UX design and system design.
               </p>
+            </div>
+
+            <div className="mt-10 grid gap-3 sm:grid-cols-3">
+              {aboutHighlights.map((highlight) => (
+                <article
+                  key={highlight.label}
+                  className="rounded-md border border-border bg-card/30 p-4 sm:p-5"
+                >
+                  <highlight.icon
+                    className="mb-4 size-5 text-muted-foreground"
+                    aria-hidden="true"
+                  />
+                  <p className="text-2xl font-extrabold leading-none text-foreground sm:text-3xl">
+                    {highlight.label}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground sm:text-base">
+                    {highlight.description}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
