@@ -1,9 +1,11 @@
 "use client";
 
 import { FormEvent, useRef } from "react";
+import { useLenis } from "lenis/react";
 import { Search, Sun } from "lucide-react";
 import { siGithub } from "simple-icons";
 
+import { scrollOffset } from "@/components/portfolio/smooth-scroll";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -54,6 +56,7 @@ const searchableSections = [
 ];
 
 export function SiteHeader() {
+  const lenis = useLenis();
   const searchRef = useRef<HTMLInputElement>(null);
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
@@ -74,10 +77,14 @@ export function SiteHeader() {
       return;
     }
 
-    document.getElementById(match.id)?.scrollIntoView({
-      block: "start",
-      behavior: "smooth",
-    });
+    const target = `#${match.id}`;
+
+    if (lenis) {
+      lenis.scrollTo(target, { offset: scrollOffset });
+      return;
+    }
+
+    document.getElementById(match.id)?.scrollIntoView({ block: "start" });
   }
 
   return (
