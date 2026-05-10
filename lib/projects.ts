@@ -108,7 +108,7 @@ export const projectData: Project[] = [
     challenges:
       "The key decision was balancing visual warmth with straightforward navigation, so the design felt like a coffee brand while still keeping important business information easy to scan.",
     githubUrl: "https://github.com/kiseto/coffee_web_demo",
-    liveUrl: "https://brewincoffee.netlify.app/",
+    liveUrl: "https://coffee-web-demo.vercel.app/",
     imageFolder: "coffee-demo",
     thumbnail: "coffee-demo-1.png",
   },
