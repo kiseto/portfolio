@@ -28,48 +28,50 @@ export function EducationSection() {
   return (
     <section
       id="education"
-      className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-12"
+      className="flex min-h-[calc(100svh-5.5rem)] scroll-mt-24 flex-col px-5 py-12 sm:px-8 lg:px-12"
     >
       <SectionHeading
         title="#education"
         subtitle="Academic background shaped around practical software systems."
       />
 
-      <div className="mt-9 border-y border-border">
-        {educationItems.map((item) => (
-          <article
-            key={item.school}
-            className="border-b border-border py-5 last:border-b-0 sm:py-6"
-          >
-            <p className="font-mono text-xs leading-5 text-muted-foreground">
-              {item.meta}
-            </p>
-            <h3 className="mt-2 text-xl font-extrabold leading-tight text-foreground sm:text-2xl">
-              {item.school}
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground sm:text-base">
-              {item.program}
-            </p>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-              {item.description}
-            </p>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-6">
-        <h3 className="font-mono text-xs font-medium uppercase leading-none text-muted-foreground">
-          Relevant Focus
-        </h3>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {focusAreas.map((area) => (
-            <span
-              key={area}
-              className="rounded-md bg-primary px-3 py-2 text-xs font-medium leading-none text-primary-foreground sm:text-sm"
+      <div className="mt-12 sm:mt-16 lg:mt-20">
+        <div className="border-b border-border">
+          {educationItems.map((item) => (
+            <article
+              key={item.school}
+              className="border-b border-border py-5 last:border-b-0 sm:py-6"
             >
-              {area}
-            </span>
+              <p className="font-mono text-xs leading-5 text-muted-foreground">
+                {item.meta}
+              </p>
+              <h3 className="mt-2 text-xl font-extrabold leading-tight text-foreground sm:text-2xl">
+                {item.school}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground sm:text-base">
+                {item.program}
+              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
+                {item.description}
+              </p>
+            </article>
           ))}
+        </div>
+
+        <div className="mt-6">
+          <h3 className="font-mono text-xs font-medium uppercase leading-none text-muted-foreground">
+            Relevant Focus
+          </h3>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {focusAreas.map((area) => (
+              <span
+                key={area}
+                className="rounded-md bg-primary px-3 py-2 text-xs font-medium leading-none text-primary-foreground sm:text-sm"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

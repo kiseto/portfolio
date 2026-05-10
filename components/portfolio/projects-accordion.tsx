@@ -240,7 +240,7 @@ export function ProjectsAccordion({ projects }: { projects: Project[] }) {
   }, []);
 
   return (
-    <div className="mt-9 space-y-3">
+    <div className="w-full space-y-3">
       {projects.map((project) => (
         <ProjectCard
           key={project.slug}

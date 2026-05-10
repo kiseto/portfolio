@@ -29,7 +29,7 @@ export default function Home() {
           />
 
           <h1 className="mt-4 text-4xl font-extrabold leading-none tracking-normal text-foreground sm:text-5xl">
-            drake.sekito
+            drake sekito
           </h1>
           <p className="mt-1 text-base leading-6 text-muted-foreground sm:text-lg">
             IT Student Developer | Web Systems
@@ -56,81 +56,89 @@ export default function Home() {
 
         <section
           id="about"
-          className="scroll-mt-24 px-5 py-12 sm:px-8 lg:px-12"
+          className="flex min-h-[calc(100svh-5.5rem)] scroll-mt-24 flex-col px-5 py-12 sm:px-8 lg:px-12"
         >
           <SectionHeading
             title="#about"
             subtitle="Building practical systems for real workflows."
           />
 
-          <p className="mt-6 max-w-4xl text-base leading-6 text-foreground">
-            I&apos;m an IT student developer who builds practical web systems
-            across both frontend and backend. I enjoy designing clean
-            interfaces, structuring user flows, and turning real workflows into
-            maintainable applications.
-          </p>
+          <div className="mt-12 sm:mt-16 lg:mt-20">
+            <div className="space-y-7">
+              <p className="max-w-4xl text-2xl font-semibold leading-9 text-foreground sm:text-3xl sm:leading-10">
+                I&apos;m an IT student developer who builds practical web
+                systems across both frontend and backend. I enjoy designing
+                clean interfaces, structuring user flows, and turning real
+                workflows into maintainable applications.
+              </p>
 
-          <p className="mt-4 max-w-4xl text-base leading-6 text-foreground">
-            My experience includes React, Next.js, Vue.js, Tailwind CSS,
-            Node.js, Express, MySQL, and Firebase, with a strong interest in
-            UI/UX design and system design.
-          </p>
-
+              <p className="max-w-4xl text-lg font-medium leading-8 text-muted-foreground sm:text-xl sm:leading-9">
+                My experience includes React, Next.js, Vue.js, Tailwind CSS,
+                Node.js, Express, MySQL, and Firebase, with a strong interest in
+                UI/UX design and system design.
+              </p>
+            </div>
+          </div>
         </section>
 
         <SectionDivider />
 
-        <section id="tech-stack" className="scroll-mt-24">
-          <div className="px-5 py-12 sm:px-8 lg:px-12">
+        <section
+          id="tech-stack"
+          className="flex min-h-[calc(100svh-5.5rem)] scroll-mt-24 flex-col"
+        >
+          <div className="px-5 pt-12 sm:px-8 lg:px-12">
             <SectionHeading
               title="#tech-stack"
-              subtitle="Technologies I use to build practical systems."
+              subtitle="Technologies I use to build my projects."
             />
           </div>
 
-          <TechCarousel />
+          <div className="mt-12 pb-12 sm:mt-16 lg:mt-20">
+            <TechCarousel />
 
-          <div className="px-5 py-9 sm:px-8 lg:px-12">
-            <CodeTerminal title="tech-stack.ts" className="max-w-4xl">
-              <span className="text-[#f3a6c8]">const</span>
-              <span> </span>
-              <span className="text-[#c7a8ff]">techStack</span>
-              <span> = {"{"}</span>
-              {"\n  "}
-              <span>frontend: [</span>
-              <span className="text-[#7dd36f]">&quot;Next.js&quot;</span>
-              <span>, </span>
-              <span className="text-[#7dd36f]">&quot;React&quot;</span>
-              <span>, </span>
-              <span className="text-[#7dd36f]">&quot;Vue.js&quot;</span>
-              <span>, </span>
-              <span className="text-[#7dd36f]">&quot;Tailwind CSS&quot;</span>
-              <span>],</span>
-              {"\n  "}
-              <span>backend: [</span>
-              <span className="text-[#7dd36f]">&quot;Node.js&quot;</span>
-              <span>, </span>
-              <span className="text-[#7dd36f]">&quot;Express&quot;</span>
-              <span>, </span>
-              <span className="text-[#7dd36f]">&quot;PHP&quot;</span>
-              <span>],</span>
-              {"\n  "}
-              <span>database: [</span>
-              <span className="text-[#7dd36f]">&quot;MySQL&quot;</span>
-              <span>, </span>
-              <span className="text-[#7dd36f]">&quot;Firebase&quot;</span>
-              <span>],</span>
-              {"\n  "}
-              <span>mobile: [</span>
-              <span className="text-[#7dd36f]">&quot;Flutter&quot;</span>
-              <span>],</span>
-              {"\n  "}
-              <span>learning: [</span>
-              <span className="text-[#7dd36f]">&quot;DevOps Practices&quot;</span>
-              <span>],</span>
-              {"\n"}
-              <span>{"}"}</span>
-            </CodeTerminal>
+            <div className="px-5 pt-9 sm:px-8 lg:px-12">
+              <CodeTerminal title="tech-stack.ts" className="max-w-4xl">
+                <span className="text-[#f3a6c8]">const</span>
+                <span> </span>
+                <span className="text-[#c7a8ff]">techStack</span>
+                <span> = {"{"}</span>
+                {"\n  "}
+                <span>frontend: [</span>
+                <span className="text-[#7dd36f]">&quot;Next.js&quot;</span>
+                <span>, </span>
+                <span className="text-[#7dd36f]">&quot;React&quot;</span>
+                <span>, </span>
+                <span className="text-[#7dd36f]">&quot;Vue.js&quot;</span>
+                <span>, </span>
+                <span className="text-[#7dd36f]">&quot;Tailwind CSS&quot;</span>
+                <span>],</span>
+                {"\n  "}
+                <span>backend: [</span>
+                <span className="text-[#7dd36f]">&quot;Node.js&quot;</span>
+                <span>, </span>
+                <span className="text-[#7dd36f]">&quot;Express&quot;</span>
+                <span>, </span>
+                <span className="text-[#7dd36f]">&quot;PHP&quot;</span>
+                <span>],</span>
+                {"\n  "}
+                <span>database: [</span>
+                <span className="text-[#7dd36f]">&quot;MySQL&quot;</span>
+                <span>, </span>
+                <span className="text-[#7dd36f]">&quot;Firebase&quot;</span>
+                <span>],</span>
+                {"\n  "}
+                <span>mobile: [</span>
+                <span className="text-[#7dd36f]">&quot;Flutter&quot;</span>
+                <span>],</span>
+                {"\n  "}
+                <span>learning: [</span>
+                <span className="text-[#7dd36f]">&quot;DevOps Practices&quot;</span>
+                <span>],</span>
+                {"\n"}
+                <span>{"}"}</span>
+              </CodeTerminal>
+            </div>
           </div>
         </section>
 

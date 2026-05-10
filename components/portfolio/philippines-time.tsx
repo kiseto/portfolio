@@ -42,8 +42,12 @@ export function PhilippinesTime({ className }: PhilippinesTimeProps) {
   }, []);
 
   return (
-    <span className={cn("block", className)} aria-live="polite">
-      philippines utc+8 / {time || "--:--"}
+    <span
+      className={cn("flex items-center gap-4", className)}
+      aria-live="polite"
+    >
+      <span>philippines utc+8</span>
+      <span>{time || "--:--"}</span>
     </span>
   );
 }
