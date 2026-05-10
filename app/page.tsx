@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Calendar, Code2, Layers } from "lucide-react";
 
-import { CodeTerminal } from "@/components/portfolio/code-terminal";
 import { ContactSection } from "@/components/portfolio/contact-section";
 import { EducationSection } from "@/components/portfolio/education-section";
 import { ProjectsSection } from "@/components/portfolio/projects-section";
@@ -25,6 +24,29 @@ const aboutHighlights = [
     label: "2",
     description: "sides of the stack, frontend and backend",
     icon: Code2,
+  },
+];
+
+const skillGroups = [
+  {
+    category: "Frontend",
+    technologies: ["Next.js", "React", "Vue.js", "Tailwind CSS"],
+  },
+  {
+    category: "Backend",
+    technologies: ["Node.js", "Express", "PHP"],
+  },
+  {
+    category: "Database",
+    technologies: ["MySQL", "Firebase"],
+  },
+  {
+    category: "Mobile",
+    technologies: ["Flutter"],
+  },
+  {
+    category: "Learning",
+    technologies: ["DevOps Practices"],
   },
 ];
 
@@ -137,46 +159,28 @@ export default function Home() {
             <TechCarousel />
 
             <div className="px-5 pt-9 sm:px-8 lg:px-12">
-              <CodeTerminal title="tech-stack.ts" className="max-w-4xl">
-                <span className="text-[#f3a6c8]">const</span>
-                <span> </span>
-                <span className="text-[#c7a8ff]">techStack</span>
-                <span> = {"{"}</span>
-                {"\n  "}
-                <span>frontend: [</span>
-                <span className="text-[#7dd36f]">&quot;Next.js&quot;</span>
-                <span>, </span>
-                <span className="text-[#7dd36f]">&quot;React&quot;</span>
-                <span>, </span>
-                <span className="text-[#7dd36f]">&quot;Vue.js&quot;</span>
-                <span>, </span>
-                <span className="text-[#7dd36f]">&quot;Tailwind CSS&quot;</span>
-                <span>],</span>
-                {"\n  "}
-                <span>backend: [</span>
-                <span className="text-[#7dd36f]">&quot;Node.js&quot;</span>
-                <span>, </span>
-                <span className="text-[#7dd36f]">&quot;Express&quot;</span>
-                <span>, </span>
-                <span className="text-[#7dd36f]">&quot;PHP&quot;</span>
-                <span>],</span>
-                {"\n  "}
-                <span>database: [</span>
-                <span className="text-[#7dd36f]">&quot;MySQL&quot;</span>
-                <span>, </span>
-                <span className="text-[#7dd36f]">&quot;Firebase&quot;</span>
-                <span>],</span>
-                {"\n  "}
-                <span>mobile: [</span>
-                <span className="text-[#7dd36f]">&quot;Flutter&quot;</span>
-                <span>],</span>
-                {"\n  "}
-                <span>learning: [</span>
-                <span className="text-[#7dd36f]">&quot;DevOps Practices&quot;</span>
-                <span>],</span>
-                {"\n"}
-                <span>{"}"}</span>
-              </CodeTerminal>
+              <div className="grid max-w-4xl gap-3 sm:grid-cols-2">
+                {skillGroups.map((group) => (
+                  <article
+                    key={group.category}
+                    className="rounded-md border border-border bg-card/30 p-4 sm:p-5"
+                  >
+                    <h3 className="text-xs font-medium leading-none text-muted-foreground">
+                      {group.category}
+                    </h3>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {group.technologies.map((technology) => (
+                        <span
+                          key={technology}
+                          className="rounded-md border border-border bg-background px-3 py-1.5 text-sm font-medium leading-5 text-foreground"
+                        >
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
