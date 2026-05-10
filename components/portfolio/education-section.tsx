@@ -59,8 +59,8 @@ export function EducationSection() {
         </div>
 
         <div className="mt-6">
-          <h3 className="font-mono text-xs font-medium uppercase leading-none text-muted-foreground">
-            Relevant Focus
+          <h3 className="text-xs font-medium leading-none text-muted-foreground">
+            relevant focus
           </h3>
           <div className="mt-4 flex flex-wrap gap-2">
             {focusAreas.map((area) => (

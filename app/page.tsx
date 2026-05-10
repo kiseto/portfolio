@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Calendar, Code2, Layers } from "lucide-react";
+import { ArrowDown, Calendar, Code2, Layers } from "lucide-react";
 
 import { ContactSection } from "@/components/portfolio/contact-section";
 import { EducationSection } from "@/components/portfolio/education-section";
@@ -8,6 +8,7 @@ import { SectionDivider } from "@/components/portfolio/section-divider";
 import { SectionHeading } from "@/components/portfolio/section-heading";
 import { SiteHeader } from "@/components/portfolio/site-header";
 import { TechCarousel } from "@/components/portfolio/tech-carousel";
+import { Button } from "@/components/ui/button";
 
 const aboutHighlights = [
   {
@@ -73,23 +74,16 @@ export default function Home() {
             drake sekito
           </h1>
           <p className="mt-1 text-base leading-6 text-muted-foreground sm:text-lg">
-            IT Student Developer | Web Systems
+            IT Student Developer | Web Apps & System Design
           </p>
 
-          <div className="mt-9 flex max-w-3xl flex-wrap items-center justify-center gap-3">
-            {[
-              "Based in the Philippines",
-              "Available for freelance",
-              "Student Developer",
-              "Web Systems",
-            ].map((label) => (
-              <span
-                key={label}
-                className="rounded-md bg-primary px-3 py-2 text-xs font-medium leading-none text-primary-foreground sm:text-sm"
-              >
-                {label}
-              </span>
-            ))}
+          <div className="mt-9 flex max-w-2xl flex-col items-center gap-5">
+            <Button asChild size="lg" className="px-4">
+              <a href="#projects">
+                See my work
+                <ArrowDown className="size-4" aria-hidden="true" />
+              </a>
+            </Button>
           </div>
         </section>
 

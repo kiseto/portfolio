@@ -82,7 +82,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="mx-auto min-h-screen w-full max-w-[1000px] border-x border-border">
-        <div className="border-b border-border px-5 py-4 sm:px-8 lg:px-12">
+        <div className="sticky top-0 z-40 border-b border-border bg-background px-5 py-4 sm:px-8 lg:px-12">
           <Link
             href="/#projects"
             className="inline-flex rounded-md text-sm font-medium leading-6 text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
