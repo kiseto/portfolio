@@ -4,6 +4,8 @@ import { projectData } from "@/lib/projects";
 
 const siteUrl = "https://kiseto.github.io/portfolio";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
