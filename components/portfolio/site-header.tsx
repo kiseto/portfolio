@@ -25,7 +25,7 @@ export function SiteHeader() {
             href="#home"
             className="shrink-0 text-2xl font-extrabold leading-none tracking-normal text-foreground sm:text-3xl"
           >
-            drkskt.github.io
+            kiseto.github.io
           </a>
 
           <div className="flex items-center gap-2">

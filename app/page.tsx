@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/portfolio/section-heading";
 import { SiteHeader } from "@/components/portfolio/site-header";
 import { TechCarousel } from "@/components/portfolio/tech-carousel";
 import { Button } from "@/components/ui/button";
+import { assetPath } from "@/lib/site";
 
 const aboutHighlights = [
   {
@@ -62,7 +63,7 @@ export default function Home() {
           className="flex min-h-[calc(100svh-5.5rem)] scroll-mt-24 flex-col items-center justify-center px-5 py-20 text-center sm:px-8 lg:px-12"
         >
           <Image
-            src="/images/memoji.png"
+            src={assetPath("/images/memoji.png")}
             alt="Memoji of Drake Sekito behind a laptop"
             width={800}
             height={800}

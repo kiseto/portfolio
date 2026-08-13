@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { assetPath } from "@/lib/site";
+
 const imageExtensions = new Set([".webp", ".png", ".jpg", ".jpeg"]);
 
 export type Project = {
@@ -125,7 +127,7 @@ function getProjectImagesDirectory(project: Project) {
 }
 
 function projectImagePath(project: Project, filename: string) {
-  return `/images/projects/${project.imageFolder}/${filename}`;
+  return assetPath(`/images/projects/${project.imageFolder}/${filename}`);
 }
 
 export function resolveProjectImage(project: Project) {
